@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#016A60</color>
+    <color name="colorPrimaryDark">#087E73</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="Intro1">#FA0606</color>
+    <color name="Intro2">#00838f</color>
+    <color name="Intro3">#098ED5</color>
+    <color name="Intro4">#005662</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_greyish">#CFD8DC</color>
+    <color name="pinky">#FF4081</color>
+    <color name="button_selectorcolor">#9E9E9E</color>
+    <color name="viewBg">#f1f5f8</color>
+    <color name="black2">#4c4c4c</color>
+    <color name="colorlight2">#63a4ff</color>
+    <color name="startblue">#4bb6ef</color>
+    <color name="endblue">#4bb6ef</color>
+    <color name="kuningGelap">#7CB342</color>
+    <color name="album_title">#4c4c4c</color>
+    <color name="photo_placeholder">#ccc</color>
+    <color name="kuning">#fbc02d</color>
+    <color name="lightgray">#808080</color>
+</resources>
