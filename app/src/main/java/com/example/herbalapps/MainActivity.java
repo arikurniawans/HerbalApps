@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.herbalapps.Activity.HerbalActivity;
+import com.example.herbalapps.Activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3000;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, HerbalActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             }
         }, SPLASH_TIME_OUT);

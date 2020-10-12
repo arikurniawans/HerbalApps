@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/fragment_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/app_name"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textViewLabel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu Utama"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Tanaman Obat Herbal"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/textViewLabel1"
+        android:layout_alignStart="@id/textViewLabel1"
+        android:id="@+id/btnmenu1"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Resep Obat Herbal"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/btnmenu1"
+        android:layout_alignStart="@id/btnmenu1"
+        android:id="@+id/btnmenu2"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Keluar"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/btnmenu2"
+        android:layout_alignStart="@id/btnmenu2"
+        android:id="@+id/btnmenu3"
+        tools:ignore="RtlCompat" />
+
+</RelativeLayout>

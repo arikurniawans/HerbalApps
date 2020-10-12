@@ -1,7 +1,6 @@
 package com.example.herbalapps.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.herbalapps.Adapter.AdapterHerbal;
+import com.example.herbalapps.Adapter.AdapterTanaman;
 import com.example.herbalapps.Kelas.ClassHerbal;
+import com.example.herbalapps.Kelas.ClassTanaman;
 import com.example.herbalapps.Kelas.ConfigApi;
 import com.example.herbalapps.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,25 +34,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HerbalActivity extends AppCompatActivity {
+public class TanamanActivity extends AppCompatActivity {
     ProgressDialog loading;
     private RecyclerView recyclerView;
-    AdapterHerbal adapterHerbal;
-    List<ClassHerbal> listHerbal;
+    AdapterTanaman adapterTanaman;
+    List<ClassTanaman> listTanaman;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_herbal);
-        setTitle("Data Obat Herbal");
+        setContentView(R.layout.activity_tanaman);
+        setTitle("Data Tanaman Herbal");
 
-        listHerbal = new ArrayList<ClassHerbal>();
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_viewHerbal);
-        adapterHerbal = new AdapterHerbal(HerbalActivity.this,listHerbal);
+        listTanaman = new ArrayList<ClassTanaman>();
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_viewTanaman);
+        adapterTanaman = new AdapterTanaman(TanamanActivity.this,listTanaman);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(HerbalActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(TanamanActivity.this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapterHerbal);
+        recyclerView.setAdapter(adapterTanaman);
 
         if (checkInternet()){
             getData();
@@ -67,6 +69,7 @@ public class HerbalActivity extends AppCompatActivity {
                     .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
                     .show();
         }
+
     }
 
     public boolean checkInternet(){
@@ -84,62 +87,56 @@ public class HerbalActivity extends AppCompatActivity {
 
     private void getData() {
 
-        loading = ProgressDialog.show(HerbalActivity.this, "Mohon Tunggu...", "Sedang Proses...", false, false);
+        loading = ProgressDialog.show(TanamanActivity.this, "Mohon Tunggu...", "Sedang Proses...", false, false);
 
-        String url = ConfigApi.HerbalApi;
+        String url = ConfigApi.TanamanApi;
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 loading.dismiss();
-//                Toast.makeText(HerbalActivity.this,response,Toast.LENGTH_LONG).show();
-                showHerbal(response);
+//                Toast.makeText(TanamanActivity.this,response,Toast.LENGTH_LONG).show();
+                showTanaman(response);
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(HerbalActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(TanamanActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
                 });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(HerbalActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(TanamanActivity.this);
         requestQueue.add(stringRequest);
     }
 
-    private void showHerbal(String response){
+    private void showTanaman(String response){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         list.clear();
-        adapterHerbal.notifyDataSetChanged();
+        adapterTanaman.notifyDataSetChanged();
         try {
             jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray("result");
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject jo = result.getJSONObject(i);
-                String id_herbal = jo.getString("id_obat");
-                String nama_obat = jo.getString("nama_obat");
-                String foto_obat = jo.getString("foto_obat");
-                String cara = jo.getString("cara");
-                String manfaat = jo.getString("manfaat");
-                String dosis = jo.getString("dosis");
+                String id_tanaman = jo.getString("id_tanaman");
+                String nama_tanaman = jo.getString("nama_tanaman");
+                String foto_tanaman = jo.getString("foto_tanaman");
 
-                ClassHerbal herbal = new ClassHerbal(
-                        id_herbal,
-                        nama_obat,
-                        foto_obat,
-                        cara,
-                        manfaat,
-                        dosis
+                ClassTanaman tanaman = new ClassTanaman(
+                        id_tanaman,
+                        nama_tanaman,
+                        foto_tanaman
                 );
-                listHerbal.add(herbal);
-                adapterHerbal.notifyDataSetChanged();
+                listTanaman.add(tanaman);
+                adapterTanaman.notifyDataSetChanged();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(HerbalActivity.this
+            Toast.makeText(TanamanActivity.this
                     ,"Data Salah "+e,Toast.LENGTH_LONG).show();
         }
 
